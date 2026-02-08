@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>¿Quieres ser mi San Valentín, Sofía?</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            font-family: 'Georgia', serif;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .carta {
+            background: #ffffff;
+            width: 90%;
+            max-width: 600px;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .carta::before {
+            content: "❤";
+            font-size: 80px;
+            color: #ff5e78;
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 0 20px;
+        }
+
+        h1 {
+            color: #ff5e78;
+            font-size: 36px;
+        }
+
+        p {
+            color: #444;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        .nombre {
+            font-size: 22px;
+            font-weight: bold;
+            color: #ff5e78;
+        }
+
+        .pregunta {
+            font-size: 26px;
+            color: #ff5e78;
+            margin-top: 25px;
+            font-weight: bold;
+        }
+
+        .botones {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        button {
+            padding: 15px 35px;
+            font-size: 20px;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .si {
+            background: #ff5e78;
+            color: white;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .si:hover {
+            transform: scale(1.1);
+        }
+
+        .no {
+            background: #ccc;
+            color: #666;
+            position: relative;
+        }
+
+        .respuesta {
+            display: none;
+            margin-top: 25px;
+            font-size: 22px;
+            color: #ff5e78;
+        }
+
+        .firma {
+            margin-top: 35px;
+            font-style: italic;
+            color: #666;
+        }
+
+        /* Corazones */
+        .corazon {
+            position: fixed;
+            top: -20px;
+            font-size: 24px;
+            color: #ff5e78;
+            animation: caer linear forwards;
+            z-index: 1;
+        }
+
+        @keyframes caer {
+            to {
+                transform: translateY(110vh);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="carta">
+    <h1>Mi amor</h1>
+
+    <p class="nombre">Sofía</p>
+
+    <p>
+        Desde que llegaste a mi vida, todo tiene más color, más sentido y más sonrisas.
+        Cada momento contigo se siente especial.
+    </p>
+
+    <p class="pregunta">
+        ¿Quieres ser mi San Valentín? 💖
+    </p>
+
+    <div class="botones">
+        <button class="si" onclick="aceptar()">Sí 💕</button>
+        <button class="no" id="no">No</button>
+    </div>
+
+    <div class="respuesta" id="respuesta">
+        Sabía que dirías que sí 🥹💘  
+        Te amo muchísimo.
+    </div>
+
+    <div class="firma">
+        Con todo mi amor,<br>
+        <strong>Jerónimo</strong>
+    </div>
+</div>
+
+<script>
+    function aceptar() {
+        document.getElementById("respuesta").style.display = "block";
+        lluviaDeCorazones();
+    }
+
+    function lluviaDeCorazones() {
+        for (let i = 0; i < 50; i++) {
+            const corazon = document.createElement("div");
+            corazon.className = "corazon";
+            corazon.innerHTML = "❤";
+            corazon.style.left = Math.random() * 100 + "vw";
+            corazon.style.animationDuration = (Math.random() * 2 + 3) + "s";
+            document.body.appendChild(corazon);
+
+            setTimeout(() => {
+                corazon.remove();
+            }, 5000);
+        }
+    }
+
+    // Botón NO que huye 😈
+    const botonNo = document.getElementById("no");
+    botonNo.addEventListener("mouseover", () => {
+        const x = Math.random() * 200 - 100;
+        const y = Math.random() * 200 - 100;
+        botonNo.style.transform = `translate(${x}px, ${y}px)`;
+    });
+</script>
+
+</body>
+</html>
